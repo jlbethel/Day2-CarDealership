@@ -32,10 +32,10 @@
     });
 
     $app->get("/car_results", function() {
-        $first_car = new Car("2014 Porsche 911", 7864, 114991, "porsche.jpg");
-        $second_car = new Car("2011 Ford F450", 14000, 55995, "ford.jpeg");
-        $third_car = new Car("2013 Lexus RX 350", 20000, 44700, "lexus.jpg");
-        $fourth_car = new Car("Mercedes Benz CLS550", 37979, 39900, "mercedes.jpg");
+        $first_car = new Car("2014 Porsche 911", 7864, 114991, "images/porsche.jpg");
+        $second_car = new Car("2011 Ford F450", 14000, 55995, "images/ford.jpeg");
+        $third_car = new Car("2013 Lexus RX 350", 20000, 44700, "images/lexus.jpg");
+        $fourth_car = new Car("Mercedes Benz CLS550", 37979, 39900, "images/mercedes.jpg");
         $cars = array($first_car, $second_car, $third_car, $fourth_car);
         $cars_matching_search = array();
         foreach ($cars as $car) {
@@ -51,12 +51,12 @@
             $make_model = $car->getMake_Model();
             $picture = $car->getPicture();
             $output = $output . "
-                    echo '<li> $make_model </li>';
-                    echo '<li> <img src='$picture'>1500 </li>';
-                    echo '<ul>';
-                          echo '<li> $new_price </li>';
-                          echo '<li> $miles </li>';
-                    echo '</ul>';
+                    <li> $make_model </li>
+                    <li> <img src='$picture'></li>
+                    <ul>
+                          <li> $$new_price </li>
+                          <li> $miles </li>
+                    </ul>
         ";
         }
         if (empty($cars_matching_search))
@@ -68,12 +68,15 @@
             <html>
             <head>
                 <title>Your Car Dealership's Homepage</title>
+                <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
             </head>
             <body>
-                <h1>Your Car Dealership</h1>
-                <ul>
-                    $output
-                </ul>
+                <div class='container'>
+                    <h1>Your Car Dealership</h1>
+                    <ul>
+                        $output
+                    </ul>
+                </div>
             </body>
             </html>
         ";
